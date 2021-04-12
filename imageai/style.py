@@ -16,10 +16,7 @@ import time
 
 
 # export CUDA_VISIBLE_DEVICES=-1
-
-
 # os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-
 # Print information about TensorFlow and make sure it's running with GPU support.
 
 
