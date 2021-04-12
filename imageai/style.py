@@ -1,7 +1,7 @@
 # Import frameworks for ML calculation.
 import os
 
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "1"
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
 import tensorflow as tf
 import tensorflow_hub as hub
