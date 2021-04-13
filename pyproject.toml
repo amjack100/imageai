@@ -7,16 +7,17 @@ version = "0.0.1"
 
 [tool.poetry.dependencies]
 click = "^7.1.2"
+fire = "^0.4.0"
+matplotlib = "^3.4.1"
 python = "^3.8"
 tensorflow = "^2.4.1"
 tensorflow-hub = "^0.11.0"
-fire = "^0.4.0"
-matplotlib = "^3.4.1"
+Pillow = "^8.2.0"
 
 [tool.poetry.dev-dependencies]
 
 [tool.poetry.scripts]
-imageai = "imageai.cli:cli_main"
+imageai = "imageai.cli:cli"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"

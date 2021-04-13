@@ -1,9 +1,9 @@
 import tensorflow as tf
-import fire
 from tensorflow.python.eager.context import device
 
 from imageai.style import Unit
 from tensorflow.python.client import device_lib
+import click
 
 
 def gpus_available():
@@ -15,7 +15,8 @@ def gpus_available():
         print("GPU not available, using CPU")
 
 
-def cli_main():
+@click.group()
+def cli():
 
     gpus_available()
 
@@ -27,5 +28,15 @@ def cli_main():
         )
     )
 
-    fire.Fire(Unit)
-    # print("Poo!")
+
+@cli.command()
+@click.argument("content")
+@click.argument("style")
+@click.argument("output")
+def style(content, style, output):
+
+    Unit(content, style, output).run()
+
+
+if __name__ == "__main__":
+    cli()

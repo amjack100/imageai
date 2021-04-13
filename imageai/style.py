@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 import numpy as np
 import time
+from PIL import Image
 
 """ The style transfer test with Arbitrary Image Stylization. """
 
@@ -23,6 +24,7 @@ import time
 class Unit:
     def __init__(self, content_image, style_image, output_image) -> None:
 
+        self.analysis_mode = False
         self.content_image = plt.imread(content_image)
         self.style_image = plt.imread(style_image)
         self.hub_module = (
@@ -53,16 +55,23 @@ class Unit:
         mpl.rcParams["axes.grid"] = False
 
         # Show results.
-        plt.subplot(1, 3, 1)
-        plt.imshow(tf.squeeze(content_image, axis=0))
-        plt.title("Content Image")
 
-        plt.subplot(1, 3, 2)
-        plt.imshow(tf.squeeze(style_image, axis=0))
-        plt.title("Style Image")
+        if self.analysis_mode:
+            plt.subplot(1, 3, 1)
+            plt.imshow(tf.squeeze(content_image, axis=0))
+            plt.title("Content Image")
 
-        plt.subplot(1, 3, 3)
-        plt.imshow(tf.squeeze(output_image, axis=0))
-        plt.title("Output Image")
+            plt.subplot(1, 3, 2)
+            plt.imshow(tf.squeeze(style_image, axis=0))
+            plt.title("Style Image")
 
-        plt.savefig(self.output_image)
+            plt.subplot(1, 3, 3)
+            plt.imshow(tf.squeeze(output_image, axis=0))
+            plt.title("Output Image")
+
+            plt.savefig(self.output_image)
+        else:
+            img = Image.fromarray(
+                tf.squeeze(output_image * 255, axis=0).numpy().astype(np.uint8)
+            )
+            img.save(self.output_image)
