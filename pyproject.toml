@@ -3,7 +3,7 @@ authors = ["Andy <amjack100@gmail.com>"]
 description = "Collection of ai based image tools"
 license = "MIT"
 name = "imageai"
-version = "0.0.1"
+version = "0.0.2"
 
 [tool.poetry.dependencies]
 click = "^7.1.2"
