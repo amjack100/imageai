@@ -1,9 +1,10 @@
-import tensorflow as tf
+# import tensorflow as tf
 from tensorflow.python.eager.context import device
-
-from imageai.style import Unit
+import tensorflow as tf
 from tensorflow.python.client import device_lib
 import click
+
+from imageai.style import Style
 
 
 def gpus_available():
@@ -35,7 +36,7 @@ def cli():
 @click.argument("output")
 def style(content, style, output):
 
-    Unit(content, style, output).run()
+    Style(content, style, output).run()
 
 
 if __name__ == "__main__":
