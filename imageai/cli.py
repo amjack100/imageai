@@ -39,8 +39,11 @@ def style(content, style, output):
     Style(content, style, output).run()
 
 
+@cli.command()
+@click.argument("input")
+@click.argument("output")
 def enhance(input, output):
-    Enhance(input)
+    Enhance(input, output).run()
 
 
 if __name__ == "__main__":
