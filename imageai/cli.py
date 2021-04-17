@@ -5,6 +5,7 @@ from tensorflow.python.client import device_lib
 import click
 
 from imageai.style import Style
+from imageai.enhance import Enhance
 
 
 def gpus_available():
@@ -35,8 +36,11 @@ def cli():
 @click.argument("style")
 @click.argument("output")
 def style(content, style, output):
-
     Style(content, style, output).run()
+
+
+def enhance(input, output):
+    Enhance(input)
 
 
 if __name__ == "__main__":

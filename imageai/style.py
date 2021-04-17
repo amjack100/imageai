@@ -10,22 +10,25 @@ import numpy as np
 import time
 from PIL import Image
 
+from imageai.base import ImgModule
 
-class Style:
+
+class Style(ImgModule):
     """
     The image stylization module
     """
 
     def __init__(self, content_image, style_image, output_image) -> None:
+        # super().__init__()
 
-        self.analysis_mode = False
-        self.images = (plt.imread(content_image), plt.imread(style_image))
         self.hub_module = (
             "https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2"
         )
+        self.analysis_mode = False
+        self.images = (plt.imread(content_image), plt.imread(style_image))
         self.output_image = output_image
 
-    def _make_img_adjustments(self):
+    def _preprocess(self):
         """
         Make preprocessing adjustments based on image input file type and number
         of channels
@@ -37,7 +40,7 @@ class Style:
             img[:, :, :, 0:3] if img.shape[-1] == 4 else img for img in self.images
         ]
 
-    def _save_normal(self, output):
+    def _save_results(self, output):
         """
         Save the output file as expected with no extra annotations
         """
@@ -73,7 +76,7 @@ class Style:
         processing, and saving steps sequentially
         """
         time_start = time.time()
-        self._make_img_adjustments()
+        self._preprocess()
 
         (content_image, style_image) = self.images
 
@@ -90,4 +93,4 @@ class Style:
         if self.analysis_mode:
             self._save_analytic(content_image, style_image, output_image)
         else:
-            self._save_normal(output_image)
+            self._save_results(output_image)
