@@ -1,0 +1,3 @@
+[console_scripts]
+imageai = imageai.cli:cli
+

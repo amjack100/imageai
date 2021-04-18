@@ -1,4 +1,8 @@
 # import tensorflow as tf
+import dotenv
+
+dotenv.load_dotenv()
+
 from tensorflow.python.eager.context import device
 import tensorflow as tf
 from tensorflow.python.client import device_lib
@@ -19,7 +23,6 @@ def gpus_available():
 
 @click.group()
 def cli():
-
     gpus_available()
 
     print("TensorFlow version: {version}".format(version=tf.__version__))
@@ -44,7 +47,3 @@ def style(content, style, output):
 @click.argument("output")
 def enhance(input, output):
     Enhance(input, output).run()
-
-
-if __name__ == "__main__":
-    cli()
